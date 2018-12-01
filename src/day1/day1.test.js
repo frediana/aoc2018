@@ -1,3 +1,5 @@
+import fs from 'fs';
+import readline from 'readline';
 import frequencySolver from './day1';
 
 describe('day1', () => {
@@ -9,4 +11,19 @@ describe('day1', () => {
 			});
 		}
 	);
+});
+
+const myInterface = readline.createInterface({
+	input: fs.createReadStream(`${__dirname}/input.txt`)
+});
+
+const data = [];
+
+myInterface.on('line', (line) => {
+	const value = parseInt(line, 10);
+	data.push(value);
+});
+
+myInterface.on('close', () => {
+	console.log(`Solution for part1 ====> ${frequencySolver(data)}`);
 });
