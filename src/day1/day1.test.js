@@ -41,4 +41,19 @@ describe('day1 part 2', () => {
 			expect(firstFrequencyReachedTwice(values)).toEqual(expectedResult);
 		});
 	});
+
+	const myInterface = readline.createInterface({
+		input: fs.createReadStream(`${__dirname}/input.txt`)
+	});
+
+	const data = [];
+
+	myInterface.on('line', (line) => {
+		const value = parseInt(line, 10);
+		data.push(value);
+	});
+
+	myInterface.on('close', () => {
+		console.log(`Solution for part2 ====> ${firstFrequencyReachedTwice(data)}`);
+	});
 });
