@@ -1,6 +1,6 @@
 import fs from 'fs';
 import readline from 'readline';
-import frequencySolver from './day1';
+import { part1 as frequencySolver } from './day1';
 
 describe('day1', () => {
 	describe.each([[[1, 1, 1], 3], [[1, 1, -2], 0], [[-1, -2, -3], -6]])(

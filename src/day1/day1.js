@@ -1,3 +1,5 @@
-export default function(values) {
-	return values.reduce((acc, current) => acc + current, 0);
-}
+const part1 = (values) => values.reduce((acc, current) => acc + current, 0);
+
+export { part1 };
+
+export default {};
