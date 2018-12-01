@@ -1,5 +1,3 @@
 export default {
-  resolve: () => {
-    return true
-  }
-}
+	resolve: () => true
+};
