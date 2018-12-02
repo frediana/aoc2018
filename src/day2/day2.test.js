@@ -92,15 +92,16 @@ describe('day2 part2', () => {
 		});
 	});
 
-	// const myInterface = readline.createInterface({
-	// 	input: fs.createReadStream(`${__dirname}/input.txt`)
-	// });
-	//
-	// const data = [];
-	//
-	// myInterface.on('line', (line) => data.push(line));
-	//
-	// myInterface.on('close', () => {
-	// 	console.log(`Solution for part1 ====> ${checksum(data)}`);
-	// });
+	const myInterface = readline.createInterface({
+		input: fs.createReadStream(`${__dirname}/input.txt`)
+	});
+
+	const data = [];
+
+	myInterface.on('line', (line) => data.push(line));
+
+	myInterface.on('close', () => {
+		const [id1, id2] = findCloserIds(data);
+		console.log(`Solution for part2 ====> ${removeCharDiff(id1, id2)}`);
+	});
 });
