@@ -1,3 +1,5 @@
+import fs from 'fs';
+import readline from 'readline';
 import { countOccurences, checksum } from './day2';
 
 describe('day2', () => {
@@ -64,18 +66,15 @@ describe('day2', () => {
 		});
 	});
 
-	// const myInterface = readline.createInterface({
-	// 	input: fs.createReadStream(`${__dirname}/input.txt`)
-	// });
-	//
-	// const data = [];
-	//
-	// myInterface.on('line', (line) => {
-	// 	const value = parseInt(line, 10);
-	// 	data.push(value);
-	// });
-	//
-	// myInterface.on('close', () => {
-	// 	console.log(`Solution for part1 ====> ${frequencySolver(data)}`);
-	// });
+	const myInterface = readline.createInterface({
+		input: fs.createReadStream(`${__dirname}/input.txt`)
+	});
+
+	const data = [];
+
+	myInterface.on('line', (line) => data.push(line));
+
+	myInterface.on('close', () => {
+		console.log(`Solution for part1 ====> ${checksum(data)}`);
+	});
 });
