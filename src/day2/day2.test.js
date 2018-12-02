@@ -1,8 +1,8 @@
 import fs from 'fs';
 import readline from 'readline';
-import { countOccurences, checksum } from './day2';
+import { countOccurences, checksum, findCloserIds, removeCharDiff } from './day2';
 
-describe('day2', () => {
+describe('day2 part 1', () => {
 	describe.each([
 		[
 			'abcdef',
@@ -77,4 +77,30 @@ describe('day2', () => {
 	myInterface.on('close', () => {
 		console.log(`Solution for part1 ====> ${checksum(data)}`);
 	});
+});
+
+describe('day2 part2', () => {
+	const values = ['abcde', 'fghij', 'klmno', 'pqrst', 'fguij', 'axcye', 'wvxyz'];
+	describe(`Given ${values}`, () => {
+		test('should get most closer IDS', () => {
+			expect(findCloserIds(values)).toEqual(['fghij', 'fguij']);
+		});
+
+		test(`should get common letters for IDS should be fgi`, () => {
+			const [id1, id2] = findCloserIds(values);
+			expect(removeCharDiff(id1, id2)).toEqual('fgij');
+		});
+	});
+
+	// const myInterface = readline.createInterface({
+	// 	input: fs.createReadStream(`${__dirname}/input.txt`)
+	// });
+	//
+	// const data = [];
+	//
+	// myInterface.on('line', (line) => data.push(line));
+	//
+	// myInterface.on('close', () => {
+	// 	console.log(`Solution for part1 ====> ${checksum(data)}`);
+	// });
 });

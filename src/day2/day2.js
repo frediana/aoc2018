@@ -48,3 +48,52 @@ export const checksum = (values) => {
 
 	return occurences.twice * occurences.thrice;
 };
+
+const countCharDiff = (string1, string2) => {
+	let count = 0;
+	for (let i = 0; i < string1.length; i += 1) {
+		if (string1.charAt(i) !== string2.charAt(i)) {
+			count += 1;
+		}
+	}
+
+	return count;
+};
+
+export const removeCharDiff = (string1, string2) => {
+	let res = '';
+	for (let i = 0; i < string1.length; i += 1) {
+		if (string1.charAt(i) === string2.charAt(i)) {
+			res += string1.charAt(i);
+		}
+	}
+
+	return res;
+};
+
+export const findCloserIds = (values) => {
+	let min = values.length;
+	let res;
+	let i = 0;
+	let j = 1;
+	while (i < values.length) {
+		const string1 = values[i];
+
+		while (j < values.length) {
+			const string2 = values[j];
+			const diff = countCharDiff(string1, string2);
+
+			if (diff < min && string1 !== string2) {
+				min = diff;
+				res = [string1, string2];
+			}
+
+			j += 1;
+		}
+
+		j = i + 1;
+		i += 1;
+	}
+
+	return res;
+};
