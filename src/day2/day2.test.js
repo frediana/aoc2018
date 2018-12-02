@@ -1,4 +1,4 @@
-import countOccurences from './day2';
+import { countOccurences, checksum } from './day2';
 
 describe('day2', () => {
 	describe.each([
@@ -54,6 +54,13 @@ describe('day2', () => {
 	])('Given %p)', (string, expectedResult) => {
 		test(`Result should be ${expectedResult}`, () => {
 			expect(countOccurences(string)).toEqual(expectedResult);
+		});
+	});
+
+	const values = ['abcdef', 'bababc', 'abbcde', 'abcccd', 'aabcdd', 'abcdee', 'ababab'];
+	describe(`Given ${values}`, () => {
+		test(`checksum should be 12`, () => {
+			expect(checksum(values)).toEqual(12);
 		});
 	});
 
