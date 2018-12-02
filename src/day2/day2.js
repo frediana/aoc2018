@@ -23,18 +23,15 @@ export const countOccurences = (string) => {
 	const nbTwices = nbUniqueOccurence(2, occurences);
 	const nbThrices = nbUniqueOccurence(3, occurences);
 
-	return {
-		twice: 2 * nbTwices,
-		thrice: 3 * nbThrices
-	};
+	return [2 * nbTwices, 3 * nbThrices];
 };
 
 export const checksum = (values) => {
 	const occurences = values.reduce(
 		(acc, current) => {
-			const currentOccurences = countOccurences(current);
-			const incrementTwice = currentOccurences.twice > 0 ? 1 : 0;
-			const incrementThrice = currentOccurences.thrice > 0 ? 1 : 0;
+			const [nbTwices, nbThrices] = countOccurences(current);
+			const incrementTwice = nbTwices > 0 ? 1 : 0;
+			const incrementThrice = nbThrices > 0 ? 1 : 0;
 			return {
 				twice: acc.twice + incrementTwice,
 				thrice: acc.thrice + incrementThrice

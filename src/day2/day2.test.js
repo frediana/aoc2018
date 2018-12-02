@@ -4,55 +4,13 @@ import { countOccurences, checksum, findCloserIds, removeCharDiff } from './day2
 
 describe('day2 part 1', () => {
 	describe.each([
-		[
-			'abcdef',
-			{
-				twice: 0,
-				thrice: 0
-			}
-		],
-		[
-			'bababc',
-			{
-				twice: 2,
-				thrice: 3
-			}
-		],
-		[
-			'abbcde',
-			{
-				twice: 2,
-				thrice: 0
-			}
-		],
-		[
-			'abcccd',
-			{
-				twice: 0,
-				thrice: 3
-			}
-		],
-		[
-			'aabcdd',
-			{
-				twice: 2,
-				thrice: 0
-			}
-		],
-		[
-			'abcdee',
-			{
-				twice: 2,
-				thrice: 0
-			}
-		],
-		[
-			'ababab',
-			{
-				twice: 0,
-				thrice: 3
-			}
-		]
+		['abcdef', [0, 0]],
+		['bababc', [2, 3]],
+		['abbcde', [2, 0]],
+		['abcccd', [0, 3]],
+		['aabcdd', [2, 0]],
+		['abcdee', [2, 0]],
+		['ababab', [0, 3]]
 	])('Given %p)', (string, expectedResult) => {
 		test(`Result should be ${expectedResult}`, () => {
 			expect(countOccurences(string)).toEqual(expectedResult);
