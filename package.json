@@ -7,7 +7,8 @@
     "test": "jest -c jest.config.js --verbose --no-cache --colors",
     "lint": "eslint . src --ext .js",
     "day1": "jest -u -c jest.config.js --verbose src/day1/day1.test.js",
-    "day2": "jest -u -c jest.config.js --verbose src/day2/day2.test.js"
+    "day2": "jest -u -c jest.config.js --verbose src/day2/day2.test.js",
+    "day3": "jest -u -c jest.config.js --verbose src/day3/day3.test.js"
   },
   "repository": {
     "type": "git",
