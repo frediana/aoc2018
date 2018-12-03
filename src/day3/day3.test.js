@@ -2,7 +2,7 @@ import { Grid, parseOrigin, parseDimensions, parseId, parse } from './day3';
 
 describe('day3', () => {
 	test('grid', () => {
-		const grid = new Grid(8, 8);
+		const grid = new Grid();
 
 		// console.log(grid.data);
 		grid.insert({ x: 1, y: 3 }, { width: 4, height: 4 }, 1);
@@ -85,7 +85,7 @@ describe('day3', () => {
 
 	const values = ['#1 @ 1,3: 4x4', '#2 @ 3,1: 4x4', '#3 @ 5,5: 2x2'];
 	describe(`Given ${values}`, () => {
-		const grid1 = new Grid(8, 8);
+		const grid1 = new Grid();
 		test('Result when parse and insert to grid', () => {
 			values.forEach((line) => {
 				const { id, at, dim } = parse(line);

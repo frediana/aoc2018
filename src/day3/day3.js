@@ -1,13 +1,28 @@
-// TODO: make this shit auto-expandable...
+// TODO: purify this and get rid of this class
 export class Grid {
-	constructor(width, height) {
+	constructor() {
 		this.data = [];
-		for (let i = 0; i < height; i += 1) {
-			this.data.push(Array(width).fill(0));
+	}
+
+	growIfNecessary(at, dim) {
+		const maxX = at.x + dim.width;
+		const maxY = at.y + dim.height;
+
+		for (let i = 0; i < maxY; i += 1) {
+			if (!this.data[i]) {
+				this.data[i] = [];
+			}
+
+			for (let j = 0; j < maxX; j += 1) {
+				if (!this.data[i][j]) {
+					this.data[i][j] = 0;
+				}
+			}
 		}
 	}
 
 	insert(at, dim, id) {
+		this.growIfNecessary(at, dim);
 		for (let i = 0; i < dim.height; i += 1) {
 			const y = at.y + i;
 			for (let j = 0; j < dim.width; j += 1) {
