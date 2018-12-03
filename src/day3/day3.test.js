@@ -1,3 +1,5 @@
+import fs from 'fs';
+import readline from 'readline';
 import { Grid, parseOrigin, parseDimensions, parseId, parse } from './day3';
 
 describe('day3', () => {
@@ -93,6 +95,24 @@ describe('day3', () => {
 				grid1.insert(at, dim, id);
 			});
 			console.log('result', grid1.data);
+			console.log('countOverlaps', grid1.countOverlaps());
 		});
+	});
+
+	const myInterface = readline.createInterface({
+		input: fs.createReadStream(`${__dirname}/input.txt`)
+	});
+
+	const data = [];
+
+	myInterface.on('line', (line) => data.push(parse(line)));
+
+	myInterface.on('close', () => {
+		const gridSolution1 = new Grid();
+		data.forEach(({ id, at, dim }) => {
+			gridSolution1.insert(at, dim, id);
+		});
+
+		console.log(`Solution for part1 ====> ${gridSolution1.countOverlaps()}`);
 	});
 });

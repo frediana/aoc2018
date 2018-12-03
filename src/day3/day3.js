@@ -36,6 +36,18 @@ export class Grid {
 			}
 		}
 	}
+
+	countOverlaps() {
+		let count = 0;
+		for (let i = 0; i < this.data.length; i += 1) {
+			for (let j = 0; j < this.data[i].length; j += 1) {
+				if (this.data[i][j] === -1) {
+					count += 1;
+				}
+			}
+		}
+		return count;
+	}
 }
 
 export const parseOrigin = (string) =>
