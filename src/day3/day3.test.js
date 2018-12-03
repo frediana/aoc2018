@@ -4,9 +4,9 @@ describe('day3', () => {
 	test('grid', () => {
 		const grid = new Grid(8, 8);
 
-		console.log(grid.data);
+		// console.log(grid.data);
 		grid.insert({ x: 1, y: 3 }, { width: 4, height: 4 }, 1);
-		console.log(grid.data);
+		// console.log(grid.data);
 	});
 
 	describe.each([['1,3:', [1, 3]], ['3,1:', [3, 1]], ['5,5:', [5, 5]]])(
@@ -80,6 +80,19 @@ describe('day3', () => {
 
 			expect(width).toEqual(expectedDimensions.width);
 			expect(height).toEqual(expectedDimensions.height);
+		});
+	});
+
+	const values = ['#1 @ 1,3: 4x4', '#2 @ 3,1: 4x4', '#3 @ 5,5: 2x2'];
+	describe(`Given ${values}`, () => {
+		const grid1 = new Grid(8, 8);
+		test('Result when parse and insert to grid', () => {
+			values.forEach((line) => {
+				const { id, at, dim } = parse(line);
+
+				grid1.insert(at, dim, id);
+			});
+			console.log('result', grid1.data);
 		});
 	});
 });
