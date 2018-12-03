@@ -17,6 +17,8 @@ export class Grid {
 	}
 }
 
+export const parseOrigin = (string) => string.split(',').map((c) => parseInt(c, 10));
+
 export default function() {
 	return 'day3';
 }

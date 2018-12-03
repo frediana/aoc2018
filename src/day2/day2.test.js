@@ -11,7 +11,7 @@ describe('day2 part 1', () => {
 		['aabcdd', [2, 0]],
 		['abcdee', [2, 0]],
 		['ababab', [0, 3]]
-	])('Given %p)', (string, expectedResult) => {
+	])('Given %p', (string, expectedResult) => {
 		test(`Result should be ${expectedResult}`, () => {
 			expect(countOccurences(string)).toEqual(expectedResult);
 		});
