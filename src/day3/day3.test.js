@@ -1,4 +1,4 @@
-import { Grid, parseOrigin, parseDimensions } from './day3';
+import { Grid, parseOrigin, parseDimensions, parseId } from './day3';
 
 describe('day3', () => {
 	test('grid', () => {
@@ -32,4 +32,11 @@ describe('day3', () => {
 			});
 		}
 	);
+
+	describe.each([['#1', 1], ['#2', 2], ['#3', 3]])('Given id %p', (input, expected) => {
+		test(`parseId should return id: ${expected}`, () => {
+			const id = parseId(input);
+			expect(id).toEqual(expected);
+		});
+	});
 });
