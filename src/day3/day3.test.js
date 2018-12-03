@@ -9,7 +9,7 @@ describe('day3', () => {
 		console.log(grid.data);
 	});
 
-	describe.each([['1,3', [1, 3]], ['3,1', [3, 1]], ['5,5', [5, 5]]])(
+	describe.each([['1,3:', [1, 3]], ['3,1:', [3, 1]], ['5,5:', [5, 5]]])(
 		'Given origin %p',
 		(input, expected) => {
 			test(`parseOrigin should return at(${expected[0]},${expected[1]})`, () => {

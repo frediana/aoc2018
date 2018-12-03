@@ -17,8 +17,14 @@ export class Grid {
 	}
 }
 
-export const parseOrigin = (string) => string.split(',').map((c) => parseInt(c, 10));
+export const parseOrigin = (string) =>
+	string
+		.split(':')[0]
+		.split(',')
+		.map((c) => parseInt(c, 10));
+
 export const parseDimensions = (string) => string.split('x').map((c) => parseInt(c, 10));
+
 export const parseId = (string) => parseInt(string.substring(1), 10);
 
 export default function() {
