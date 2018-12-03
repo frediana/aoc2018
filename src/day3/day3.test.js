@@ -1,10 +1,11 @@
 import fs from 'fs';
 import readline from 'readline';
-import { Grid, parseOrigin, parseDimensions, parseId, parse } from './day3';
+import Resolver from './day3.resolver';
+import { parseOrigin, parseDimensions, parseId, parse } from './day3.parser';
 
 describe('day3', () => {
 	test('grid', () => {
-		const grid = new Grid();
+		const grid = new Resolver();
 
 		// console.log(grid.data);
 		grid.insert({ x: 1, y: 3 }, { width: 4, height: 4 }, 1);
@@ -87,7 +88,7 @@ describe('day3', () => {
 
 	const values = ['#1 @ 1,3: 4x4', '#2 @ 3,1: 4x4', '#3 @ 5,5: 2x2'];
 	describe(`Given ${values}`, () => {
-		const grid1 = new Grid();
+		const grid1 = new Resolver();
 		test('Result when parse and insert to grid', () => {
 			values.forEach((line) => {
 				const { id, at, dim } = parse(line);
@@ -109,7 +110,7 @@ describe('day3', () => {
 	myInterface.on('line', (line) => data.push(parse(line)));
 
 	myInterface.on('close', () => {
-		const gridSolution1 = new Grid();
+		const gridSolution1 = new Resolver();
 		data.forEach(({ id, at, dim }) => {
 			gridSolution1.insert(at, dim, id);
 		});
