@@ -1,4 +1,4 @@
-import { Grid, parseOrigin } from './day3';
+import { Grid, parseOrigin, parseDimensions } from './day3';
 
 describe('day3', () => {
 	test('grid', () => {
@@ -10,13 +10,25 @@ describe('day3', () => {
 	});
 
 	describe.each([['1,3', [1, 3]], ['3,1', [3, 1]], ['5,5', [5, 5]]])(
-		'Given %p',
+		'Given origin %p',
 		(input, expected) => {
 			test(`parseOrigin should return at(${expected[0]},${expected[1]})`, () => {
 				const [x, y] = parseOrigin(input);
 				const [expectedX, expectedY] = expected;
 				expect(x).toEqual(expectedX);
 				expect(y).toEqual(expectedY);
+			});
+		}
+	);
+
+	describe.each([['4x4', [4, 4]], ['3x3', [3, 3]], ['2x2', [2, 2]]])(
+		'Given dimension %p',
+		(input, expected) => {
+			test(`parseDimensions should return dimensions(w:${expected[0]},h:${expected[1]})`, () => {
+				const [width, height] = parseDimensions(input);
+				const [expectedWidth, expectedHeight] = expected;
+				expect(width).toEqual(expectedWidth);
+				expect(height).toEqual(expectedHeight);
 			});
 		}
 	);
