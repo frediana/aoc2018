@@ -11,7 +11,12 @@ export class Grid {
 			const y = at.y + i;
 			for (let j = 0; j < dim.width; j += 1) {
 				const x = at.x + j;
-				this.data[y][x] = id;
+				if (this.data[y][x] === 0) {
+					this.data[y][x] = id;
+				} else {
+					// overlaps
+					this.data[y][x] = -1;
+				}
 			}
 		}
 	}
