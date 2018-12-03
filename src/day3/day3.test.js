@@ -96,6 +96,7 @@ describe('day3', () => {
 			});
 			console.log('result', grid1.data);
 			console.log('countOverlaps', grid1.countOverlaps());
+			console.log('cleanIds', grid1.cleanIds);
 		});
 	});
 
@@ -114,5 +115,6 @@ describe('day3', () => {
 		});
 
 		console.log(`Solution for part1 ====> ${gridSolution1.countOverlaps()}`);
+		console.log(`Solution for part2 ====> ${gridSolution1.cleanIds}`);
 	});
 });

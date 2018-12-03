@@ -2,6 +2,7 @@
 export class Grid {
 	constructor() {
 		this.data = [];
+		this.cleans = {};
 	}
 
 	growIfNecessary(at, dim) {
@@ -23,6 +24,7 @@ export class Grid {
 
 	insert(at, dim, id) {
 		this.growIfNecessary(at, dim);
+		this.cleans[id] = true;
 		for (let i = 0; i < dim.height; i += 1) {
 			const y = at.y + i;
 			for (let j = 0; j < dim.width; j += 1) {
@@ -31,10 +33,17 @@ export class Grid {
 					this.data[y][x] = id;
 				} else {
 					// overlaps
+					const oldValue = this.data[y][x];
 					this.data[y][x] = -1;
+					this.cleans[id] = false;
+					this.cleans[oldValue] = false;
 				}
 			}
 		}
+	}
+
+	get cleanIds() {
+		return Object.keys(this.cleans).filter((k) => this.cleans[k] === true);
 	}
 
 	countOverlaps() {
@@ -78,7 +87,3 @@ export const parse = (string) => {
 		}
 	};
 };
-
-export default function() {
-	return 'day3';
-}
