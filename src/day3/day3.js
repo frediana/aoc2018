@@ -1,3 +1,4 @@
+// TODO: make this shit auto-expandable...
 export class Grid {
 	constructor(width, height) {
 		this.data = [];
