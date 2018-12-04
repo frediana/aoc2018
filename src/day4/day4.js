@@ -34,14 +34,49 @@ const parseShift = (shift) => {
 
 export const parseShifts = (shifts) => shifts.map((shift) => parseShift(shift));
 
+const getGuardsIndexes = (parsedShifts) => {
+	const guardsIdx = [];
+	parsedShifts.forEach((guard, idx) => {
+		if (guard.action.type === 'guard') {
+			guardsIdx.push(idx);
+		}
+	});
+
+	return guardsIdx;
+};
+
+const getActionsSlotsPerGuard = (guardsIdx, parsedShifts) => {
+	const actionsSlotPerGuard = {};
+	guardsIdx.forEach((guardIdx, idx) => {
+		const isLast = idx === guardsIdx.length - 1;
+
+		if (isLast) {
+			actionsSlotPerGuard[guardIdx] = [guardIdx + 1, parsedShifts.length - 1];
+		} else {
+			const nextGuardIdx = guardsIdx[idx + 1];
+			actionsSlotPerGuard[guardIdx] = [guardIdx + 1, nextGuardIdx - 1];
+		}
+	});
+
+	return actionsSlotPerGuard;
+};
+
 // return: [ guard: { id, shifts: [{ start, length }] ]
 export const getAllGuards = (shifts) => {
 	const parsedShifts = parseShifts(shifts);
+	const guardsIdx = getGuardsIndexes(parsedShifts);
+	const actionsSlotPerGuard = getActionsSlotsPerGuard(guardsIdx, parsedShifts);
 
-	const guards = parsedShifts.map((shift) => {
+	console.log('actionsSlotPerGuard', actionsSlotPerGuard);
+	console.log('guardsIdx', guardsIdx);
+
+	const guards = parsedShifts.map((shift, idx) => {
 		const guard = {};
 		if (shift.action.type === 'guard') {
 			guard.id = shift.action.id;
+			const [sliceFrom, sliceTo] = actionsSlotPerGuard[idx];
+			const actionsForThisGuard = shifts.slice(sliceFrom, sliceTo + 1);
+			guard.shifts = actionsForThisGuard.join(' ');
 		}
 
 		return guard;
